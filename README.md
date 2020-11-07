@@ -3,6 +3,10 @@
 # Grbl (CNC Controller) For ESP32
 
 <img src="https://user-images.githubusercontent.com/189677/93836185-74c27500-fc47-11ea-8bed-5d419974c196.jpg" width="600">
+<br/><br/>
+Modified to support G32 Thread Cutting command.
+<br/>
+Authors: Alex Petrusca and Dumitru Petrusca
 
 ### Project Overview
 
