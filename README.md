@@ -8,7 +8,7 @@ Modified to support G32 Thread Cutting command.
 <br/>
 Authors: Alex Petrusca and Dumitru Petrusca
 
-### Project Overview 
+### Project Overview
 
 Grbl_ESP32 started as a port of [Grbl](https://github.com/gnea/grbl) to the ESP32. The power of the ESP32 has allowed this firmware to grow far beyond the limitations of 8-bit AVR controllers. Here are some of the current features
 
