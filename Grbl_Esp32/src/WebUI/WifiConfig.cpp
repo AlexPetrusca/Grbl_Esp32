@@ -228,7 +228,7 @@ namespace WebUI {
      * Connect client to AP
      */
 
-    bool WiFiConfig::ConnectSTA2AP() {
+    bool WiFiConfig::ConnectSTA2AP(const char* ssid, const char* password) {
         String      msg, msg_out;
         uint8_t     count  = 0;
         uint8_t     dot    = 0;
@@ -240,6 +240,9 @@ namespace WebUI {
                     break;
                 case WL_CONNECT_FAILED:
                     msg = "Connection failed";
+                    // try again
+                    WiFi.disconnect(true);
+                    WiFi.begin(ssid, password);
                     break;
                 case WL_CONNECTED:
                     break;
@@ -299,7 +302,7 @@ namespace WebUI {
         if (WiFi.begin(SSID.c_str(), (password.length() > 0) ? password.c_str() : NULL)) {
             grbl_send(CLIENT_ALL, "\n[MSG:Client Started]\r\n");
             grbl_sendf(CLIENT_ALL, "[MSG:Connecting %s]\r\n", SSID.c_str());
-            return ConnectSTA2AP();
+            return ConnectSTA2AP(SSID.c_str(), (password.length() > 0) ? password.c_str() : NULL);
         } else {
             grbl_send(CLIENT_ALL, "[MSG:Starting client failed]\r\n");
             return false;

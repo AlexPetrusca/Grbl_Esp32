@@ -110,7 +110,7 @@ namespace WebUI {
         ~WiFiConfig();
 
     private:
-        static bool   ConnectSTA2AP();
+        static bool   ConnectSTA2AP(const char* ssid, const char* password);
         static void   WiFiEvent(WiFiEvent_t event);
         static String _hostname;
         static bool   _events_registered;
