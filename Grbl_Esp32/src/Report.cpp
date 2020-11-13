@@ -369,6 +369,9 @@ void report_gcode_modes(uint8_t client) {
         case Motion::CcwArc:
             mode = "G3";
             break;
+        case Motion::LinearIndexed:
+            mode = "G32";
+            break;
         case Motion::ProbeToward:
             mode = "G38.1";
             break;

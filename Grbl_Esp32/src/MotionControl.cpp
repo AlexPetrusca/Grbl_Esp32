@@ -93,6 +93,13 @@ void mc_line(float* target, plan_line_data_t* pl_data) {
     plan_buffer_line(target, pl_data);
 }
 
+// Execute linear motion synchronized to spindle rotation. Makes a call to mc_line after waiting
+// for index signal pulse. Used for threading.
+void mc_indexed_line(float* target, plan_line_data_t* pl_data) {
+    mc_index_dwell();
+    mc_line(target, pl_data);
+}
+
 // Execute an arc in offset mode format. position == current xyz, target == target xyz,
 // offset == offset from current xyz, axis_X defines circle plane in tool space, axis_linear is
 // the direction of helical travel, radius == circle radius, isclockwise boolean. Used
@@ -232,6 +239,13 @@ void mc_dwell(float seconds) {
     }
     protocol_buffer_synchronize();
     delay_sec(seconds, DELAY_MODE_DWELL);
+}
+
+// Execute dwell until index signal pulse.
+void mc_index_dwell() {
+    protocol_buffer_synchronize();
+    // Check for index falling edge before proceeding.
+    index_state_monitor();
 }
 
 // return true if the mask has exactly one bit set,

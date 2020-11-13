@@ -70,7 +70,7 @@ enum class NonModal : uint8_t {
     SetHome1              = 40,   // G30.1 (Do not alter value)
     AbsoluteOverride      = 53,   // G53 (Do not alter value)
     SetCoordinateOffset   = 92,   // G92 (Do not alter value)
-    ResetCoordinateOffset = 102,  //G92.1 (Do not alter value)
+    ResetCoordinateOffset = 102,  // G92.1 (Do not alter value)
 };
 
 // Modal Group G1: Motion modes
@@ -79,6 +79,7 @@ enum class Motion : uint8_t {
     Linear             = 1,    // G1 (Do not alter value)
     CwArc              = 2,    // G2 (Do not alter value)
     CcwArc             = 3,    // G3 (Do not alter value)
+    LinearIndexed      = 5,    // G32 (Do not alter value)
     ProbeToward        = 140,  // G38.2 (Do not alter value)
     ProbeTowardNoError = 141,  // G38.3 (Do not alter value)
     ProbeAway          = 142,  // G38.4 (Do not alter value)

@@ -111,6 +111,10 @@ void delay_ms(uint16_t ms) {
     delay(ms);
 }
 
+void delay_us(uint16_t us) {
+    delayMicroseconds(us);
+}
+
 // Non-blocking delay function used for general operation and suspend features.
 void delay_sec(float seconds, uint8_t mode) {
     uint16_t i = ceil(1000 / DWELL_TIME_STEP * seconds);

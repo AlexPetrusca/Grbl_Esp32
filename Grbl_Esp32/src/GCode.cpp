@@ -270,6 +270,16 @@ Error gc_execute_line(char* line, uint8_t client) {
                         gc_block.modal.motion = Motion::CcwArc;
                         mg_word_bit           = ModalGroup::MG1;
                         break;
+                    case 32:  // G32 - single point threading
+                        //only allow G32 "Threading" command if an index pin is defined.
+                        if (INDEX_PIN == UNDEFINED_PIN) {
+                            grbl_msg_sendf(CLIENT_SERIAL, MsgLevel::Info, "No index pin defined");
+                            FAIL(Error::GcodeUnsupportedCommand);  // [Unsupported G command]
+                        }
+                        axis_command          = AxisCommand::MotionMode;
+                        gc_block.modal.motion = Motion::LinearIndexed;
+                        mg_word_bit           = ModalGroup::MG1;
+                        break;
                     case 38:  // G38 - probe
                         //only allow G38 "Probe" commands if a probe pin is defined.
                         if (PROBE_PIN == UNDEFINED_PIN) {
@@ -1505,6 +1515,8 @@ Error gc_execute_line(char* line, uint8_t client) {
             if (gc_state.modal.motion == Motion::Linear) {
                 //mc_line(gc_block.values.xyz, pl_data);
                 mc_line_kins(gc_block.values.xyz, pl_data, gc_state.position);
+            } else if (gc_state.modal.motion == Motion::LinearIndexed) {
+                mc_indexed_line(gc_block.values.xyz, pl_data);
             } else if (gc_state.modal.motion == Motion::Seek) {
                 pl_data->motion.rapidMotion = 1;  // Set rapid motion flag.
                 //mc_line(gc_block.values.xyz, pl_data);

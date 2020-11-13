@@ -45,6 +45,7 @@ const char* const GRBL_VERSION_BUILD = "20201022";
 #include "WebUI/Authentication.h"
 #include "WebUI/Commands.h"
 #include "Probe.h"
+#include "Index.h"
 #include "System.h"
 
 #include "GCode.h"

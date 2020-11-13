@@ -38,6 +38,9 @@ const int PARKING_MOTION_LINE_NUMBER = 0;
 void mc_line_kins(float* target, plan_line_data_t* pl_data, float* position);
 void mc_line(float* target, plan_line_data_t* pl_data);
 
+// Execute linear motion synchronized to spindle rotation. Used for threading.
+void mc_indexed_line(float* target, plan_line_data_t* pl_data);
+
 // Execute an arc in offset mode format. position == current xyz, target == target xyz,
 // offset == offset from current xyz, axis_XXX defines circle plane in tool space, axis_linear is
 // the direction of helical travel, radius == circle radius, is_clockwise_arc boolean. Used
@@ -54,6 +57,8 @@ void mc_arc(float*            target,
 
 // Dwell for a specific number of seconds
 void mc_dwell(float seconds);
+
+void mc_index_dwell();
 
 // Perform homing cycle to locate machine zero. Requires limit switches.
 void mc_homing_cycle(uint8_t cycle_mask);

@@ -178,6 +178,7 @@ extern int32_t sys_position[MAX_N_AXIS];        // Real-time machine (aka home) 
 extern int32_t sys_probe_position[MAX_N_AXIS];  // Last probe position in machine coordinates and steps.
 
 extern volatile Probe         sys_probe_state;    // Probing state value.  Used to coordinate the probing cycle with stepper ISR.
+//extern volatile Index         sys_index_state;    // Indexing state value.  Used to coordinate indexing with stepper ISR.
 extern volatile ExecState     sys_rt_exec_state;  // Global realtime executor bitflag variable for state management. See EXEC bitmasks.
 extern volatile ExecAlarm     sys_rt_exec_alarm;  // Global realtime executor bitflag variable for setting various alarms.
 extern volatile ExecAccessory sys_rt_exec_accessory_override;  // Global realtime executor bitflag variable for spindle/coolant overrides.

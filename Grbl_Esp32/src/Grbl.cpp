@@ -86,6 +86,7 @@ static void reset_variables() {
     memset(sys_probe_position, 0, sizeof(sys_probe_position));  // Clear probe position.
 
     sys_probe_state                      = Probe::Off;
+//    sys_index_state                      = Index::Off;
     sys_rt_exec_state.value              = 0;
     sys_rt_exec_accessory_override.value = 0;
     sys_rt_exec_alarm                    = ExecAlarm::None;
@@ -101,6 +102,7 @@ static void reset_variables() {
     coolant_init();
     limits_init();
     probe_init();
+    index_init();
     plan_reset();  // Clear block buffer and planner variables
     st_reset();    // Clear stepper subsystem variables
     // Sync cleared gcode and planner positions to current system position.
